@@ -15,9 +15,18 @@ html {
  */
 
 body {
-  margin: 0;
+  font-family: 'Roboto Condensed', sans-serif;
   color: #244751;
   background-color: #eee;
+}
+
+
+main {
+  position: relative;
+  padding: 140px 0;
+  margin: 80px auto;
+  width: 450px;
+  background-color: white;
 }
 
 /*
