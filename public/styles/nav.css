@@ -22,3 +22,17 @@ nav {
   font-size: 200%;
   padding-left: 10px
 }
+
+/*#nav-bar #compose {
+  float:right;
+  height: 60px;
+  width: 120px;
+  margin: 0.5em 10px;
+  border-radius: 7px;
+  opacity: 0.5;
+  border: solid black 1px;
+}
+
+#nav-bar #compose:hover {
+  opacity: 1;
+}*/

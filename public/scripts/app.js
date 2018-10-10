@@ -6,6 +6,16 @@
 
 // THIS IS WHAT TWEET OBJECT LOOKS LIKE
 
+  function loadTweets () {
+    $.getJSON('/tweets/').done(renderTweets);
+  }
+
+$(document).ready(function() {
+
+  postTweet()
+  loadTweets();
+})
+
 function createTweetElement(element) {
 
   var time = Math.round((Date.now() - element.created_at) / (1000*3600*24))
@@ -39,32 +49,38 @@ function renderTweets (data) {
   }
 }
 
+function escape(str) {
+  var div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
 
-function postTweet(callback){
+function postTweet(){
   var $form = $('#tweet-form');
+
   $form.on('submit', function (event) {
     event.preventDefault();
+    let tweet = $(this).children('.tweet-text').val()
+    const safeHTML = escape(tweet)
+    let safeTweet = $(this).children('.tweet-text').val(safeHTML)
     let newTweet = $(this).serialize();
+
     let counter = Number($(this).children('.counter').text());
     if (counter === 140) {
       alert("Error: Tweet is Blank")
     } else if (counter < 0) {
       alert("Error: Exceeded Character Count Limit")
     } else {
-      $.post('/tweets/', newTweet).done(callback());
+      $.post('/tweets/', newTweet)
+      // .done(loadTweets());    Old version
+      setTimeout(function(){loadTweets()}, 200); ///accounts for built in server delay
       $form.trigger("reset");
       $(this).children('.counter').text(140);
     }
   });
 };
 
-$(document).ready(function() {
+// function composeTweet() {
 
-  function loadTweets () {
-    $.getJSON('/tweets/').done(renderTweets);
-  }
-
-  postTweet(loadTweets);
-  loadTweets();
-})
+// }
 

@@ -4,7 +4,7 @@ article.tweet {
   border-color: #A0A0A0;
   border-width: 1px;
   margin: 0 2em;
-  height: 10em;
+  height: 14em;
 }
 
 article.tweet:hover {
@@ -61,7 +61,7 @@ article.tweet footer {
   border-top: solid 1px;
   border-color: #A0A0A0;
   padding: 5px 10px;
-  height: 15%;
+  height: 20%;
   font-size: .85em;
 }
 article.tweet footer div.images{
@@ -75,6 +75,7 @@ article.tweet:hover footer div.images{
 }
 
 article.tweet p {
-  height: 30%;
-  padding-left: .25em;
+  height: 35%;
+  padding: 0 .4em;
+  word-wrap: break-word;
 }
