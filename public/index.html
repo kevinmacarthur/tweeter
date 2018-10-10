@@ -31,14 +31,22 @@
 
   <body>
 
+    <!-- THIS IS JUST ANCHOR FOR TOP OF PAGE EMPTY DIV -->
+    <div id="top-of-page"> </div>
+
     <!-- Top nav bar (fixed) -->
     <nav id="nav-bar">
       <img class="logo" src="/images/bird.png">
       <span class="header">Tweeter</span>
       <div class="buttons">
-        <button id="compose"> Compose</button>
+        <button id="compose" class="button"><i class="icon ion-md-create"></i>Compose</button>
+        <button class="button"> <a href="#top-of-page">Return to top</a></button>
       </div>
     </nav>
+
+    <div>
+      <span  id="error-message" class="error-message-container"> Error </span>
+    </div>
 
     <!-- Page-specific (main) content here -->
     <main class="container">
@@ -47,7 +55,7 @@
         <form  id="tweet-form" method="POST" action="/tweets">
           <textarea class ="tweet-text" name="text" placeholder="What are you humming about?"></textarea>
           <input  type="submit" value="Tweet">
-          <span id="error-message">  </span>
+          <!-- <span id="error-message">  </span> -->
           <span class="counter">140</span>
         </form>
       </section>

@@ -71,15 +71,14 @@ function postTweet(){
     let counter = Number($(this).children('.counter').text());
     if (counter === 140) {
       $('#error-message').text("Error: Tweet is empty");
-      $('#error-message').show();
-      // $('#error-message').slideDown("slow", function() {})
+      $('#error-message').slideDown("slow", function() {})
     } else if (counter < 0) {
       $('#error-message').text("Error: Exceded Character Limit");
-      $('#error-message').show();
+      $('#error-message').slideDown("slow", function() {})
     } else {
       $.post('/tweets/', newTweet)
       // .done(loadTweets());    Old version
-       $('#error-message').hide();
+      $('#error-message').slideUp("slow", function() {})
       setTimeout(function(){loadTweets()}, 200); ///accounts for built in server delay
       $form.trigger("reset");
       $(this).children('.counter').text(140);
