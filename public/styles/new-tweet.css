@@ -2,12 +2,12 @@
   border:  1px solid black;
 }*/
 
-.new-tweet{
+#new-tweet-container{
   border: solid;
   border-radius: 7px;
   border-color: #A0A0A0;
   border-width: 1px;
-  margin: 0 2em;
+  margin: 1em 2em;
   background-color: #E8E8E8;
 }
 
@@ -33,4 +33,9 @@ font-size: 95%;
 form input{
   margin-left: 3%;
   margin-bottom: 3%;
+}
+
+#error-message {
+  color: red;
+  margin: 0 12%;
 }

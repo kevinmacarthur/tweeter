@@ -4,8 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// THIS IS WHAT TWEET OBJECT LOOKS LIKE
-
   function loadTweets () {
     $.getJSON('/tweets/').done(renderTweets);
   }
@@ -14,8 +12,10 @@ $(document).ready(function() {
 
   postTweet()
   loadTweets();
+  composeTweet()
 })
 
+//Creates a new tweet
 function createTweetElement(element) {
 
   var time = Math.round((Date.now() - element.created_at) / (1000*3600*24))
@@ -49,11 +49,14 @@ function renderTweets (data) {
   }
 }
 
+//THIS Cleans text to avoid javascript being injected
 function escape(str) {
   var div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 }
+
+//HOW TO POST A TWEET
 
 function postTweet(){
   var $form = $('#tweet-form');
@@ -67,12 +70,16 @@ function postTweet(){
 
     let counter = Number($(this).children('.counter').text());
     if (counter === 140) {
-      alert("Error: Tweet is Blank")
+      $('#error-message').text("Error: Tweet is empty");
+      $('#error-message').show();
+      // $('#error-message').slideDown("slow", function() {})
     } else if (counter < 0) {
-      alert("Error: Exceeded Character Count Limit")
+      $('#error-message').text("Error: Exceded Character Limit");
+      $('#error-message').show();
     } else {
       $.post('/tweets/', newTweet)
       // .done(loadTweets());    Old version
+       $('#error-message').hide();
       setTimeout(function(){loadTweets()}, 200); ///accounts for built in server delay
       $form.trigger("reset");
       $(this).children('.counter').text(140);
@@ -80,7 +87,23 @@ function postTweet(){
   });
 };
 
-// function composeTweet() {
-
-// }
+//THIS is what happens when a user Clicks compose button
+function composeTweet() {
+  let $button = $('#compose');
+  let clicked = false
+  $button.on('click', function () {
+    if (clicked === false) {
+      $('#new-tweet-container').slideUp("fast", function() {
+        clicked = true;
+      })
+    } else {
+      $('#new-tweet-container').slideDown("fast", function() {
+        clicked = false;
+        let $textArea = $("#tweet-form .tweet-text")
+        console.log($textArea)
+        $textArea.select()
+      });
+    };
+  });
+}
 

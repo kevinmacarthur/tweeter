@@ -23,7 +23,7 @@ nav {
   padding-left: 10px
 }
 
-/*#nav-bar #compose {
+#nav-bar #compose {
   float:right;
   height: 60px;
   width: 120px;
@@ -35,4 +35,4 @@ nav {
 
 #nav-bar #compose:hover {
   opacity: 1;
-}*/
+}
