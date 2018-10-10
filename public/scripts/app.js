@@ -91,3 +91,13 @@ const data = [
   }
 ];
 
+
+$(function(){
+  var $form = $('#tweet-form');
+  $form.on('submit', function (event) {
+    event.preventDefault();
+    let newTweet = $(this).serialize()
+    $.post('/tweets/', newTweet)
+      });
+  });
+
