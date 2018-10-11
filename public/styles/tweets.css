@@ -1,10 +1,12 @@
+
+/*Whole tweet container*/
 article.tweet {
   border: solid;
   border-radius: 7px;
   border-color: #A0A0A0;
   border-width: 1px;
   margin: 0 2em;
-  height: 14em;
+  height: 12em;
 }
 
 article.tweet:hover {
@@ -17,7 +19,7 @@ article.tweet header {
  height: 30%
 }
 
-
+/*Avatar picture*/
 article.tweet header img{
   width: 2.5em;
   height: 2.5em;
@@ -32,7 +34,7 @@ article.tweet:hover header img {
  opacity: 1;
 }
 
-
+/*Tweeter Handle*/
 article.tweet header span {
   float: right;
   color: #A0A0A0;
@@ -44,6 +46,7 @@ article.tweet:hover header span {
   color: black;
 }
 
+/*Tweeter handle*/
 article.tweet header strong{
   display: inline-block;
   margin-top: .25em;
@@ -57,6 +60,14 @@ article.tweet:hover header strong {
  opacity: 1;
 }
 
+/*Tweet content*/
+article.tweet p {
+  height: 35%;
+  padding: 0 .4em;
+  word-wrap: break-word;
+}
+
+/*How many Days Ago and icons*/
 article.tweet footer {
   border-top: solid 1px;
   border-color: #A0A0A0;
@@ -64,6 +75,7 @@ article.tweet footer {
   height: 20%;
   font-size: .85em;
 }
+
 article.tweet footer div.images{
   display: none;
   margin: 0 5px;
@@ -72,10 +84,4 @@ article.tweet footer div.images{
 
 article.tweet:hover footer div.images{
   display: inline-block;
-}
-
-article.tweet p {
-  height: 35%;
-  padding: 0 .4em;
-  word-wrap: break-word;
 }

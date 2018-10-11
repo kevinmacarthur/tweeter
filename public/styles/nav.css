@@ -1,3 +1,5 @@
+
+/*Whole Nav Bar*/
 nav {
   padding: 0 2em;
   height: 80px;
@@ -23,6 +25,7 @@ nav {
   padding-left: 10px
 }
 
+/*Buttons Style*/
 #nav-bar .button {
   float:right;
   height: 60px;
@@ -32,15 +35,18 @@ nav {
   opacity: 0.5;
   border: solid black 1px;
 }
-#nav-bar .button a {
-  text-decoration: none;
-  color: black;
-}
 
 #nav-bar .button:hover {
   opacity: 1;
 }
 
+/*Link to top*/
+#nav-bar .button a {
+  text-decoration: none;
+  color: black;
+}
+
+/*Error Message Banner*/
 div #error-message {
   padding: 0 2em;
   height: 40px;
