@@ -121,7 +121,6 @@ function attachListeners() {
       currentLikes += 1;  // makes currentlikes the correct value to send in ajax
       liked = true;
       $(this).css('color', 'red')
-      console.log(currentLikes)
         //Send Ajax Put Request to update db here for counter text as # of likes
         $.ajax({
           url: `/tweets/${tweetId}`,
