@@ -43,6 +43,7 @@ module.exports = function(DataHelpers) {
     });
   });
 
+//Handles Put Request for Likes
   tweetsRoutes.put("/:id", function(req, res) {
     let tweetId = req.body.tweetId;
     let likes = req.body.currentLikes
@@ -56,6 +57,7 @@ module.exports = function(DataHelpers) {
     })
   })
 
+//Handles Delete Requests
   tweetsRoutes.delete("/:id", function(req, res) {
     let tweetId = req.body.tweetId;
 

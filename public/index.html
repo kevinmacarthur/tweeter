@@ -19,6 +19,7 @@
 
     <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
 
+    <!-- External Icons used for heart and trash -->
     <link href="https://unpkg.com/ionicons@4.4.4/dist/css/ionicons.min.css" rel="stylesheet">
 
     <!-- External JS -->
@@ -40,7 +41,7 @@
       <span class="header">Tweeter</span>
       <div class="buttons">
         <button id="compose" class="button"><i class="icon ion-md-create"></i>Compose</button>
-        <button class="button"> <a href="#top-of-page">Return to top</a></button>
+        <button id="return-to-top" class="button"> <a href="#top-of-page">Return to top</a></button>
       </div>
     </nav>
 
@@ -55,7 +56,6 @@
         <form  id="tweet-form" method="POST" action="/tweets">
           <textarea class ="tweet-text" name="text" placeholder="What are you humming about?"></textarea>
           <input  type="submit" value="Tweet">
-          <!-- <span id="error-message">  </span> -->
           <span class="counter">140</span>
         </form>
       </section>
