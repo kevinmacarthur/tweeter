@@ -58,6 +58,18 @@ module.exports = function(DataHelpers) {
     })
   })
 
+  tweetsRoutes.delete("/:id", function(req, res) {
+    let tweetId = req.body.tweetId;
+
+    DataHelpers.deleteTweet(tweetId, (err) => {
+      if (err) {
+        res.status(500).json({error: "err.message"})
+      } else {
+      res.status(201).send();
+      }
+    })
+  })
+
   return tweetsRoutes;
 
 }
