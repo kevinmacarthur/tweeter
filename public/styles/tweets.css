@@ -85,3 +85,8 @@ article.tweet footer div.images{
 article.tweet:hover footer div.images{
   display: inline-block;
 }
+
+/*Can access just the liked button*/
+/*article.tweet #liked {
+  color: yellow;
+}*/

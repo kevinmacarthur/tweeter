@@ -31,9 +31,10 @@ function createTweetElement(element) {
           <footer>
             ${time} days ago
             <div class="images">
-              <i class="icon ion-md-heart"></i>
               <i class="icon ion-md-flag"></i>
               <i class="icon ion-md-repeat"></i>
+              <button class="liked" name="${element._id}"><i class="icon ion-md-heart"></i></button>
+              <span class="likes-count"> ${element.likes} </span>
             </div>
           </footer>
         </article>
@@ -48,6 +49,7 @@ function renderTweets (data) {
     var $tweet = createTweetElement(tweet);
     $('#tweets-container').prepend($tweet);    //places tweet at top instead of append
   }
+  attachListeners()
 }
 
 //THIS Cleans text to avoid javascript being injected
@@ -66,18 +68,16 @@ function postTweet(){
     event.preventDefault();
     let tweet = $(this).children('.tweet-text').val();
     const safeHTML = escape(tweet); //Creates safe html from form input
-
     $(this).children('.tweet-text').val(safeHTML);  //Injects Safe text back into textbox input to serialize
-
     let newTweet = $(this).serialize();
-
     let counter = Number($(this).children('.counter').text());
-
     if (counter === 140) {
-      $('#error-message').text("Error: Tweet is empty");
+      $('#error-message').slideUp("fast", function() {});
+      setTimeout(function(){$('#error-message').text("Error: Tweet is empty");}, 300)
       $('#error-message').slideDown("slow", function() {});
     } else if (counter < 0) {
-      $('#error-message').text("Error: Exceded Character Limit");
+      $('#error-message').slideUp("fast", function() {});
+      setTimeout(function(){$('#error-message').text("Error:Exceded Character Limit");}, 300)
       $('#error-message').slideDown("slow", function() {});
     } else {
       $.post('/tweets/', newTweet);
@@ -107,4 +107,53 @@ function composeTweet() {
     }
   });
 }
+
+//BUG FIX NEED to tie the true and false to just that element
+//if i click different tweets it breaks
+function attachListeners() {
+  let liked = false
+  $(".liked").on('click', function(){
+    let tweetId = $(this).attr("name")
+    let $counter = ($(this).siblings('.likes-count'))
+    let currentLikes = Number($counter.text())
+    if (liked===false || currentLikes === 0) {
+      $counter.text(currentLikes + 1);
+      currentLikes += 1;  // makes currentlikes the correct value to send in ajax
+      liked = true;
+      $(this).css('color', 'red')
+      console.log(currentLikes)
+        //Send Ajax Put Request to update db here for counter text as # of likes
+        $.ajax({
+          url: `/tweets/${tweetId}`,
+          type: `PUT`,
+          data:{
+                tweetId: `${tweetId}`,
+                currentLikes: currentLikes
+              },
+          success: function(result) {
+            console.log("Ajax sent successfully")
+          }
+        });
+    } else {
+      $counter.text(currentLikes - 1);
+      currentLikes -= 1;
+      liked = false;
+      $(this).css('color', 'gray') //change red to like a duller red / default color
+        $.ajax({
+          url: `/tweets/${tweetId}`,
+          type: `PUT`,
+          data:{
+                tweetId: `${tweetId}`,
+                currentLikes: currentLikes
+              },
+          success: function(result) {
+            console.log("Ajax sent successfully")
+          }
+        });
+    }
+  });
+}
+
+
+
 
