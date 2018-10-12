@@ -5,14 +5,13 @@ article.tweet {
   border-radius: 7px;
   border-color: #A0A0A0;
   border-width: 1px;
-  margin: 0 2em;
+  margin: .5em 2em;
   height: 12em;
 }
 
 article.tweet:hover {
   border: solid grey 2px;
 }
-
 
 article.tweet header {
  background-color: #E8E8E8;

@@ -43,8 +43,6 @@ module.exports = function(DataHelpers) {
     });
   });
 
-
-// THIS IS TEST CODE TO MAKE PUT REQUEST TO LIKE BUTTON
   tweetsRoutes.put("/:id", function(req, res) {
     let tweetId = req.body.tweetId;
     let likes = req.body.currentLikes
