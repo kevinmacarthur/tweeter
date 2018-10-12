@@ -25,6 +25,13 @@ module.exports = function makeDataHelpers(db) {
      updateLikes: function(tweetId, likes, callback) {
       db.collection("tweets").updateOne({ _id : ObjectId(tweetId)},{$set: {"likes":likes}}, {upsert:true}) //use the sent id to update the tweet
       callback(null, true)
-    }
+    },
+
+    deleteTweet: function(tweetId, callback) {
+      db.collection("tweets").deleteOne({ _id : ObjectId(tweetId)})//
+      callback(null, true)
+    },
+
+
   }
 }

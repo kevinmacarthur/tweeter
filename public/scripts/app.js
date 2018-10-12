@@ -31,8 +31,7 @@ function createTweetElement(element) {
           <footer>
             ${time} days ago
             <div class="images">
-              <i class="icon ion-md-flag"></i>
-              <i class="icon ion-md-repeat"></i>
+              <button class="delete" name="${element._id}"><i class="icon ion-md-trash"></i></button>
               <button class="liked" name="${element._id}"><i class="icon ion-md-heart"></i></button>
               <span class="likes-count"> ${element.likes} </span>
             </div>
@@ -50,6 +49,7 @@ function renderTweets (data) {
     $('#tweets-container').prepend($tweet);    //places tweet at top instead of append
   }
   attachListeners()
+  attachDelete()
 }
 
 //THIS Cleans text to avoid javascript being injected
@@ -108,8 +108,7 @@ function composeTweet() {
   });
 }
 
-//BUG FIX NEED to tie the true and false to just that element
-//if i click different tweets it breaks
+
 function attachListeners() {
   let liked = false
   $(".liked").on('click', function(){
@@ -137,7 +136,7 @@ function attachListeners() {
       $counter.text(currentLikes - 1);
       currentLikes -= 1;
       liked = false;
-      $(this).css('color', 'gray') //change red to like a duller red / default color
+      $(this).css('color', '#244751') //change red to like a duller red / default color
         $.ajax({
           url: `/tweets/${tweetId}`,
           type: `PUT`,
@@ -150,6 +149,23 @@ function attachListeners() {
           }
         });
     }
+  });
+}
+
+function attachDelete() {
+  $(".delete").on('click', function(){
+    let tweetId = $(this).attr("name")
+    $.ajax({
+              url: `/tweets/${tweetId}`,
+              type: `Delete`,
+              data:{
+                    tweetId: `${tweetId}`,
+                  },
+              success: function(result) {
+                console.log("Ajax sent successfully")
+                setTimeout(function(){loadTweets();}, 500);
+               }
+    });
   });
 }
 
