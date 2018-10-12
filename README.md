@@ -13,7 +13,7 @@ Tweeter is a simple, single-page Twitter clone.
 
 Home Page
 
-
+![""](https://github.com/kevinmacarthur/tweeter/blob/master/Tweeter.png)
 
 ## Dependencies
 
