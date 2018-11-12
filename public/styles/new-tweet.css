@@ -34,7 +34,6 @@ form input{
 
 /*Character counter*/
 .counter {
-display: inline-block;
 float: right;
 margin-right:3%;
 font-style: italic;
